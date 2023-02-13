@@ -1,0 +1,24 @@
+---
+tls_keys: []
+#  - path: # path of key on node
+#    content: |-  # in PEM format, remove key if equals to tls_absent variable ('!REMOVE!' by default)
+#      -----BEGIN CERTIFICATE-----
+#      -----END CERTIFICATE-----
+#    src: # or from file on controller
+#    remote_src: # or on node
+
+tls_crts: []
+#  - path: # path of certificate on node
+#    content: |-  # in PEM format, remove certificate if equals to tls_absent variable ('!REMOVE!' by default)
+#      -----BEGIN CERTIFICATE-----
+#      -----END CERTIFICATE-----
+#    src: # or from file on controller
+#    remote_src: # or on node
+
+tls_CAs: []
+#  - name: # filename of CA certificate on node, always with .crt suffix which is added or replaced if required
+#    content: |-  # in PEM format, remove CA if equals to tls_absent variable ('!REMOVE!' by default)
+#      -----BEGIN CERTIFICATE-----
+#      -----END CERTIFICATE-----
+#    src: # or from file on controller
+#    remote_src: # or on node

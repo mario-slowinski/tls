@@ -1,0 +1,4 @@
+---
+tls_absent: "!REMOVE!"
+
+tls_CA: "{{ lookup('vars', ansible_os_family + '_tls_CA') }}"

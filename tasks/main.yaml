@@ -1,0 +1,13 @@
+---
+- name: "Manage CA certificates"
+  tags:
+    - tls
+    - tls.ca
+  ansible.builtin.import_tasks: CA.yaml
+
+- name: "Manage TLS keys and certificates"
+  tags:
+    - tls
+    - tls.keys
+    - tls.certs
+  ansible.builtin.import_tasks: crts.yaml

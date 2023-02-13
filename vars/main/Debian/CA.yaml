@@ -1,0 +1,6 @@
+---
+Debian_tls_CA:
+  path: /usr/local/share/ca-certificates
+  owner: root
+  group: root
+  mode: 0o644

@@ -1,0 +1,26 @@
+---
+- name: "Add TLS keys and certificates"
+  tags: tls.crts.add
+  ansible.builtin.copy:
+    content: "{{ item['content'] | default(omit) }}"
+    dest: "{{ item['path'] | mandatory }}"
+    group: "{{ item['group'] | default(omit) }}"
+    mode: "{{ item['mode'] | default(omit) }}"
+    owner: "{{ item['owner'] | default(omit) }}"
+    remote_src: "{{ item['remote_src'] | default(omit) }}"
+    setype: "{{ item['setype'] | default(omit) }}"
+    src: "{{ item['src'] | default(omit) }}"
+  loop: "{{ tls_keys | union(tls_crts) }}"
+  loop_control:
+    label: "{{ item['path'] }}"
+  when: item['content'] != tls_absent
+
+- name: "Remove keys and certificates"
+  tags: tls.crts.remove
+  ansible.builtin.file:
+    path: "{{ item['path'] | mandatory }}"
+    state: absent
+  loop: "{{ tls_keys | union(tls_crts) }}"
+  loop_control:
+    label: "{{ item['path'] | mandatory }}"
+  when: item['content'] == tls_absent

@@ -1,0 +1,29 @@
+---
+galaxy_info:
+  author: mario_slowinski
+  description: Manage TLS certificates
+
+  license: GPL-3.0-only
+
+  min_ansible_version: 2.10
+
+  platforms:
+    - name: GenericLinux
+      versions:
+        - any
+    - name: EL
+      versions:
+        - any
+    - name: Ubuntu
+      versions:
+        - any
+    - name: Debian
+      versions:
+        - any
+
+  galaxy_tags:
+    - tls
+    - ssl
+    - ca
+
+dependencies: []
