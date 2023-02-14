@@ -1,5 +1,20 @@
 ---
-- name: "Add TLS keys and certificates"
+- name: "Create parent directory"
+  tags: tls.crts.add
+  ansible.builtin.file:
+    dest: "{{ item['path'] | mandatory | dirname }}"
+    group: "{{ item['group'] | default(omit) }}"
+    mode: "{{ item['mode'] | default(omit) }}"
+    owner: "{{ item['owner'] | default(omit) }}"
+    state: directory
+  loop: "{{ tls_keys | union(tls_crts) }}"
+  loop_control:
+    label: "{{ item['path'] | dirname }}"
+  when:
+    - (item['content'] | default('')) != tls_absent
+    - item['path'] is contains('/')
+
+- name: "Create file"
   tags: tls.crts.add
   ansible.builtin.copy:
     content: "{{ item['content'] | default(omit) }}"

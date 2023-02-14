@@ -16,7 +16,7 @@ Role Variables
 
   ```yaml
   tls_keys: []
-  - path: # path of key on
+  - path: # path of key on node, creates parent directory if contains '/'
     content: |-  # in PEM format, remove key if equals to tls_absent variable ('!REMOVE!' by default)
       -----BEGIN CERTIFICATE-----
       -----END CERTIFICATE-----
@@ -24,7 +24,7 @@ Role Variables
     remote_src: # or on node
 
   tls_crts: []
-    - path: # path of certificate on node
+    - path: # path of certificate on node, creates parent directory if contains '/'
       content: |-  # in PEM format, remove certificate if equals to tls_absent variable ('!REMOVE!' by default)
         -----BEGIN CERTIFICATE-----
         -----END CERTIFICATE-----
