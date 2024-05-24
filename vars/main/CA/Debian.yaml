@@ -1,5 +1,5 @@
 ---
-Debian_tls_CA:
+tls_CA_Debian:
   path: /usr/local/share/ca-certificates
   owner: root
   group: root
