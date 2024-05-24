@@ -10,4 +10,4 @@
     - tls
     - tls.keys
     - tls.certs
-  ansible.builtin.import_tasks: crts.yaml
+  ansible.builtin.import_tasks: "crts_{{ ansible_os_family }}.yaml"

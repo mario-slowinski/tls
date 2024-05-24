@@ -28,7 +28,8 @@
   loop: "{{ tls_keys | union(tls_crts) }}"
   loop_control:
     label: "{{ item['path'] }}"
-  when: (item['content'] | default('')) != tls_absent
+  when:
+    - (item['content'] | default('')) != tls_absent
 
 - name: "Remove keys and certificates"
   tags: tls.crts.remove
@@ -38,4 +39,5 @@
   loop: "{{ tls_keys | union(tls_crts) }}"
   loop_control:
     label: "{{ item['path'] | mandatory }}"
-  when: (item['content'] | default('')) == tls_absent
+  when:
+    - (item['content'] | default('')) == tls_absent
