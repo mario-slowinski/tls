@@ -2,3 +2,4 @@
 tls_absent: "!REMOVE!"
 
 tls_CA: "{{ lookup('vars', 'tls_CA_' + ansible_os_family) }}"
+tls_crt: "{{ lookup('vars', 'tls_crt_' + ansible_os_family) }}"
