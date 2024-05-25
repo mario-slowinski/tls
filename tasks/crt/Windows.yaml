@@ -1,0 +1,15 @@
+---
+- name: "Add TLS certificate file to Windows"
+  tags: tls.crt.add
+  ansible.windows.win_copy:
+    backup: "{{ item['backup'] | default(omit) }}"
+    content: "{{ item['content'] | default(omit) }}"
+    decrypt: "{{ item['decrypt'] | default(omit) }}"
+    dest: "{{ tls_crt['path'] }}\\{{ (item['name'] is defined) | ternary(item['name'], item['src'] | default('') | win_basename) }}"
+    force: "{{ item['force'] | default(omit) }}"
+    local_follow: "{{ item['local_follow'] | default(omit) }}"
+    remote_src: "{{ item['remote_src'] | default(omit) }}"
+    src: "{{ item['src'] | default(omit) }}"
+  loop: "{{ tls_crts }}"
+  loop_control:
+    label: "{{ tls_crt['path'] }}\\{{ (item['name'] is defined) | ternary(item['name'], item['src'] | default('') | win_basename) }}"

@@ -1,6 +1,6 @@
 ---
-- name: "Create parent directory"
-  tags: tls.crts.add
+- name: "Create parent directory on Linux"
+  tags: tls.crt.add
   ansible.builtin.file:
     dest: "{{ item['path'] | mandatory | dirname }}"
     group: "{{ item['group'] | default(omit) }}"
@@ -14,8 +14,8 @@
     - (item['content'] | default('')) != tls_absent
     - item['path'] is contains('/')
 
-- name: "Create file"
-  tags: tls.crts.add
+- name: "Create TLS certificate file on Linux"
+  tags: tls.crt.add
   ansible.builtin.copy:
     content: "{{ item['content'] | default(omit) }}"
     dest: "{{ item['path'] | mandatory }}"
@@ -31,8 +31,8 @@
   when:
     - (item['content'] | default('')) != tls_absent
 
-- name: "Remove keys and certificates"
-  tags: tls.crts.remove
+- name: "Remove keys and certificates on Linux"
+  tags: tls.crt.remove
   ansible.builtin.file:
     path: "{{ item['path'] | mandatory }}"
     state: absent

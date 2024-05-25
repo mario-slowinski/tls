@@ -8,6 +8,13 @@
 - name: "Manage TLS keys and certificates"
   tags:
     - tls
-    - tls.keys
-    - tls.certs
-  ansible.builtin.import_tasks: "crts_{{ ansible_os_family }}.yaml"
+    - tls.key
+    - tls.crt
+  ansible.builtin.import_tasks: "crt/{{ ansible_system }}.yaml"
+
+- name: "Manage TLS certificates in Windows store"
+  tags:
+    - tls
+    - tls.store
+  ansible.builtin.import_tasks: "store.yaml"
+  when: ansible_system == "Windows"
