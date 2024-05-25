@@ -1,0 +1,19 @@
+---
+- name: "Manage TLS certificate in Windows store"
+  tags: tls.store
+  ansible.windows.win_certificate_store:
+    file_type: "{{ item['file_type'] | default(omit) }}"
+    key_exportable: "{{ item['key_exportable'] | default(omit) }}"
+    key_storage: "{{ item['key_storage'] | default(omit) }}"
+    password: "{{ item['password'] | default(omit) }}"
+    path: "{{ tls_crt['path'] }}\\{{ (item['name'] is defined) | ternary(item['name'], item['src'] | default('') | win_basename) }}"
+    state: "{{ item['state'] | default(omit) }}"
+    store_location: "{{ item['store_location'] | default(omit) }}"
+    store_name: "{{ item['store_name'] | default(omit) }}"
+    store_type: "{{ item['store_type'] | default(omit) }}"
+    thumbprint: "{{ item['thumbprint'] | default(omit) }}"
+  loop: "{{ tls_CAs | union(tls_crts) }}"
+  loop_control:
+    label: "{{ tls_crt['path'] }}\\{{ (item['name'] is defined) | ternary(item['name'], item['src'] | default('') | win_basename) }}"
+  when:
+    - item['store_name'] is defined
