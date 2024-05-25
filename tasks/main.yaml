@@ -3,7 +3,7 @@
   tags:
     - tls
     - tls.ca
-  ansible.builtin.import_tasks: CA.yaml
+  ansible.builtin.import_tasks: "CA/{{ ansible_system }}.yaml"
 
 - name: "Manage TLS keys and certificates"
   tags:
