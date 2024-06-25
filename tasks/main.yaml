@@ -17,4 +17,4 @@
     - tls
     - tls.store
   ansible.builtin.import_tasks: "store.yaml"
-  when: ansible_system == "Windows"
+  when: ansible_os_family == "Windows"
